@@ -3,7 +3,7 @@
 [![codecov](https://codecov.io/gh/Arquisoft/participants1b/branch/master/graph/badge.svg)](https://codecov.io/gh/Arquisoft/participants1b)
 
 
-# participants0
+# participants1b
 
 [![Join the chat at https://gitter.im/Arquisoft/participants0](https://badges.gitter.im/Arquisoft/participants1b.svg)](https://gitter.im/Arquisoft/participants1b?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
