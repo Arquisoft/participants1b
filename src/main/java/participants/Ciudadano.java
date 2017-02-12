@@ -1,4 +1,4 @@
-package model;
+package participants;
 
 import java.util.Date;
 
