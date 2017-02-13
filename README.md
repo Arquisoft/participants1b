@@ -11,12 +11,12 @@ Skeleton of participants module
 
 # Authors
 
--Ramón Sobrino Llorca (UO250817)
+- Ramón Sobrino Llorca (UO250817)
 
--Pablo Rodriguez Alvarez (UO236935)
+- Pablo Rodriguez Alvarez (UO236935)
 
--Rodrigo Benjy Rojas Nakamura (UO242509)
+- Rodrigo Benjy Rojas Nakamura (UO242509)
 
--Javier Valduvieco García
+- Javier Valduvieco García
 
--Alejandro Sáez Morollón (UO198755)
+- Alejandro Sáez Morollón (UO198755)
