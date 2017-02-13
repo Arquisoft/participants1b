@@ -1,8 +1,6 @@
-package Participants;
+package participants;
 
 import DBManagement.model.Ciudadano;
-
-import participants.dbManagement.modelo.Ciudadano;
 
 /**
  * Clase que permite al usuario entrar en sesión para comprobar sus datos
@@ -10,6 +8,6 @@ import participants.dbManagement.modelo.Ciudadano;
  * @author Pablo
  *
  */
-public class GetParticipantInfo{
+public interface GetParticipantInfo{
 
 }

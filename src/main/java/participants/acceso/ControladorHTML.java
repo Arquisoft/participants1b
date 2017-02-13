@@ -31,7 +31,7 @@ public class ControladorHTML {
 		return "ciudadano";
 	}
 	
-	 
+	//TODO Tratamiento de errores
 	@RequestMapping(value = "/logearse", method = RequestMethod.POST)
 	public String postHTML(@RequestBody String parametros, Model modelo){
 		
@@ -52,6 +52,8 @@ public class ControladorHTML {
 		String password = p[1].split("=")[1];
 		
 		//Comprobar los datos
+		
+		
 		
 		return "ciudadano";
 	}

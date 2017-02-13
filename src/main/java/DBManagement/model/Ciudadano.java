@@ -2,8 +2,17 @@ package DBManagement.model;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Ciudadano {
 
+	@Id
+	@GeneratedValue
+	private Long id;
+	
 	private String nombre;
 	private String apellidos;
 	private String email;
