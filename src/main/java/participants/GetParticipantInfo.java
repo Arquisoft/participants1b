@@ -1,4 +1,6 @@
-package participants;
+package Participants;
+
+import DBManagement.model.Ciudadano;
 
 /**
  * Clase que permite al usuario entrar en sesión para comprobar sus datos

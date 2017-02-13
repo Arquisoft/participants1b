@@ -1,4 +1,4 @@
-package participants;
+package Participants;
 
 
 import org.springframework.boot.SpringApplication;

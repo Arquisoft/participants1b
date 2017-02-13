@@ -1,4 +1,6 @@
-package participants;
+package Participants;
+
+import DBManagement.model.Ciudadano;
 
 /**
  * Devuelve la informacion para el usuario

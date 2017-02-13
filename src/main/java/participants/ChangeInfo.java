@@ -1,4 +1,4 @@
-package participants;
+package Participants;
 
 /**
  * Permite el cambio de clave de un participante mediante

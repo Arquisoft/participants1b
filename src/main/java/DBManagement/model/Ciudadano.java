@@ -1,4 +1,4 @@
-package participants;
+package DBManagement.model;
 
 import java.util.Date;
 
