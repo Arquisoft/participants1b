@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import participants.GetParticipant;
+import DBManagement.GetParticipant;
 
 @Controller
 @RequestMapping("/ControladorPeticion")
@@ -24,7 +24,6 @@ public class ControladorHTML {
 	public String formulario(Model modelo){
 		return "formularioPeticiones";
 	}
-	
 	
 	@RequestMapping(value = "/datosCiudadano", method = RequestMethod.GET)
 	public String getHTML(Model modelo){

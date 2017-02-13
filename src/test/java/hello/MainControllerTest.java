@@ -16,12 +16,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.client.RestTemplate;
+import participants.Application;
 
-<<<<<<< HEAD
-import Participants.Application;
-
-=======
->>>>>>> a8491e4804a33979a5e5cad76931b6de968290ed
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration

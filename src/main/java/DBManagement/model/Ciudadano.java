@@ -36,6 +36,8 @@ public class Ciudadano {
 		this.password = password;
 	}
 	
+	Ciudadano(){}
+	
 	public String getNombre() {
 		return nombre;
 	}
