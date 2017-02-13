@@ -8,16 +8,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import DBManagement.GetParticipant;
+import DBManagement.persistence.CiudadanoRepository;
 
 @Controller
 @RequestMapping("/ControladorPeticion")
 public class ControladorHTML {
 
-	private final GetParticipant getParticipant;
+	private final CiudadanoRepository ciudadanoRepository;
 	
 	@Autowired
-	ControladorHTML(GetParticipant getParticipant){
-		this.getParticipant = getParticipant;
+	ControladorHTML(CiudadanoRepository ciudadanoRepository){
+		this.ciudadanoRepository = ciudadanoRepository;
 	}
 	
 	@RequestMapping("/formularioPeticiones")
@@ -51,8 +52,6 @@ public class ControladorHTML {
 		String password = p[1].split("=")[1];
 		
 		//Comprobar los datos
-		
-		
 		
 		return "ciudadano";
 	}
