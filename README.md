@@ -19,4 +19,4 @@ Skeleton of participants module
 
 -Javier Valduvieco García
 
-- Alejandro Sáez Morollón (UO198755)
+-Alejandro Sáez Morollón (UO198755)
