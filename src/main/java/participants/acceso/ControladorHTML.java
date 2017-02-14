@@ -8,23 +8,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import DBManagement.GetParticipant;
-import DBManagement.persistence.CiudadanoRepository;
 
 @Controller
 @RequestMapping("/ControladorPeticion")
 public class ControladorHTML {
 
-	private final CiudadanoRepository ciudadanoRepository;
-	
 	@Autowired
-	ControladorHTML(CiudadanoRepository ciudadanoRepository){
-		this.ciudadanoRepository = ciudadanoRepository;
+	private GetParticipant getParticipants;
+	
+	
+	ControladorHTML(GetParticipant getParticipants){
+		this.getParticipants = getParticipants;
 	}
 	
-	@RequestMapping("/formularioPeticiones")
-	public String formulario(Model modelo){
-		return "formularioPeticiones";
-	}
 	
 	@RequestMapping(value = "/datosCiudadano", method = RequestMethod.GET)
 	public String getHTML(Model modelo){
