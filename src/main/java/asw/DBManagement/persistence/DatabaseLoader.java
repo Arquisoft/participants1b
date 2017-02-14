@@ -1,5 +1,6 @@
-package DBManagement.persistence;
+package asw.DBManagement.persistence;
 
+import java.time.Instant;
 import java.util.Date;
 
 import javax.annotation.PostConstruct;
@@ -7,7 +8,7 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import DBManagement.model.Ciudadano;
+import asw.DBManagement.model.Ciudadano;
 
 @Component
 public class DatabaseLoader {
@@ -20,7 +21,7 @@ public class DatabaseLoader {
 	 private void initDatabase() {
 		
 		Ciudadano c1 = new Ciudadano("Ramon", "Sobrino Llorca", "ramonsobrino@llorca.es",
-				new Date("04-04-1986"), "Oviedo", "Española", "71664900", "123456");
+				Date.from(Instant.now()), "Oviedo", "Española", "71664900", "123456");
 		
 		repository.save(c1);
 		

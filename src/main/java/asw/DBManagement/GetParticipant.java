@@ -1,6 +1,6 @@
-package DBManagement;
+package asw.DBManagement;
 
-import DBManagement.model.Ciudadano;
+import asw.DBManagement.model.Ciudadano;
 
 /**
  * 

@@ -1,4 +1,4 @@
-package participants;
+package asw.participants;
 
 /**
  * Clase que permite al usuario entrar en sesión para comprobar sus datos

@@ -1,9 +1,9 @@
-package DBManagement.persistence;
+package asw.DBManagement.persistence;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import DBManagement.model.Ciudadano;
+import asw.DBManagement.model.Ciudadano;
 
 @Repository
 public interface CiudadanoRepository extends CrudRepository<Ciudadano, Long> {

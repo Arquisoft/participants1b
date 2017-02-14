@@ -1,11 +1,11 @@
-package DBManagement.impl;
+package asw.DBManagement.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import DBManagement.UpdateInfo;
-import DBManagement.model.Ciudadano;
-import DBManagement.persistence.CiudadanoRepository;
+import asw.DBManagement.UpdateInfo;
+import asw.DBManagement.model.Ciudadano;
+import asw.DBManagement.persistence.CiudadanoRepository;
 
 @Component
 public class UpdateInfoDB implements UpdateInfo {
