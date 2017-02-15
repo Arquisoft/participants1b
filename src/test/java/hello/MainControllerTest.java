@@ -22,13 +22,13 @@ import asw.Application;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
-@IntegrationTest({"server.port=0"})
+@IntegrationTest({ "server.port=0" })
 public class MainControllerTest {
 
-    @Value("${local.server.port}")
-    private int port;
+	@Value("${local.server.port}")
+	private int port;
 
-    private URL base;
+	private URL base;
 	private RestTemplate template;
 
 	@Before
@@ -39,16 +39,17 @@ public class MainControllerTest {
 
 	@Test
 	public void getLanding() throws Exception {
-		String userURI = base.toString() + "/user";  
-		ResponseEntity<String> response = template.getForEntity(base.toString(), String.class);
-		assertThat(response.getBody(), containsString("Hola"));
+	String userURI = base.toString() + "/user";
+	ResponseEntity<String> response = template.getForEntity(base.toString(), String.class);
+
+	assertThat(response.getBody(), containsString("_links"));
 	}
-	
+
 	@Test
 	public void getUser() throws Exception {
-		String userURI = base.toString() + "/user";  
+		String userURI = base.toString() + "/user";
 		ResponseEntity<String> response = template.getForEntity(userURI, String.class);
-		//UserInfo expected = new UserInfo("pepe",0);
+		// UserInfo expected = new UserInfo("pepe",0);
 	}
 
 }
