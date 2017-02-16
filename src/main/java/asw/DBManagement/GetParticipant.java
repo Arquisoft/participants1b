@@ -1,5 +1,7 @@
 package asw.DBManagement;
 
+import java.util.List;
+
 import asw.DBManagement.model.Ciudadano;
 
 /**
@@ -9,5 +11,5 @@ import asw.DBManagement.model.Ciudadano;
  */
 
 public interface GetParticipant{
-	public Ciudadano getCiudadano(String nombre);
+	public List<Ciudadano> getCiudadano(String email);
 }

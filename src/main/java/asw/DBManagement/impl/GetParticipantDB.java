@@ -1,5 +1,7 @@
 package asw.DBManagement.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,9 +16,9 @@ public class GetParticipantDB implements GetParticipant{
 	private CiudadanoRepository repositorio; 
 	
 	@Override
-	public Ciudadano getCiudadano(String nombre) {
-		Ciudadano citizen = repositorio.findByNombre(nombre);
-		return citizen;
+	public List<Ciudadano> getCiudadano(String email) {
+		List<Ciudadano> citizens = repositorio.findByEmail(email);
+		return citizens;
 	}
 
 
