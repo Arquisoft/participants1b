@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import asw.DBManagement.impl.GetParticipantDB;
+import asw.DBManagement.model.Ciudadano;
+import asw.DBManagement.persistence.CiudadanoRepository;
 
 @Controller
 public class ControladorHTML {
@@ -15,7 +17,8 @@ public class ControladorHTML {
 	@SuppressWarnings("unused")
 	@Autowired
 	private GetParticipantDB getParticipantDB;
-	
+	@Autowired
+	private CiudadanoRepository repositorio;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String getHTML(Model modelo){
@@ -43,7 +46,19 @@ public class ControladorHTML {
 		String password = p[1].split("=")[1];
 		
 		//Comprobar los datos
+		Ciudadano ciudadano = repositorio.findByNombre(usuario);
+		
+		if(!ciudadano.getNombre().equals(usuario))
+		{
+			//Lanzar error
+		}
+		
+		if(!ciudadano.getPassword().equals(password))
+		{
+			//Lanzar error
+		}
 		
 		return "datos";
 	}
+	
 }
