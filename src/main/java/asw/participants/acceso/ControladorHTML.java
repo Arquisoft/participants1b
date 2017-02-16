@@ -7,24 +7,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import asw.DBManagement.GetParticipant;
+import asw.DBManagement.impl.GetParticipantDB;
 
 @Controller
-@RequestMapping("/ControladorPeticion")
 public class ControladorHTML {
 
+	@SuppressWarnings("unused")
 	@Autowired
-	private GetParticipant getParticipants;
+	private GetParticipantDB getParticipantDB;
 	
 	
-	ControladorHTML(GetParticipant getParticipants){
-		this.getParticipants = getParticipants;
-	}
-	
-	
-	@RequestMapping(value = "/datosCiudadano", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String getHTML(Model modelo){
-		return "ciudadano";
+		return "login";
 	}
 	
 	//TODO Tratamiento de errores
@@ -49,6 +44,6 @@ public class ControladorHTML {
 		
 		//Comprobar los datos
 		
-		return "ciudadano";
+		return "datos";
 	}
 }
