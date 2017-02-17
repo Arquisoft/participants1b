@@ -12,5 +12,6 @@ public class Application {
 	public static void main(String[] args){
         //ApplicationContext applicationContext = new ClassPathXmlApplicationContext("/application-context.xml");
       SpringApplication.run(Application.class, args);
+      
 	}
 }

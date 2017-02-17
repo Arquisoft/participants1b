@@ -10,4 +10,5 @@ import asw.DBManagement.model.Ciudadano;
 
 public interface GetParticipant{
 	public Ciudadano getCiudadano(String nombre);
+	
 }

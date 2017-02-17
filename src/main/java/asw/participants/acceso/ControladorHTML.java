@@ -1,5 +1,10 @@
 package asw.participants.acceso;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,7 +39,6 @@ public class ControladorHTML {
 		
 		//Usuario en blanco
 		if(p[0].length() <= 8){
-			//Lanzar error
 		}
 		
 		//Contraseña en blanco
@@ -58,7 +62,11 @@ public class ControladorHTML {
 			//Lanzar error
 		}
 		
+		
+		
 		return "datos";
 	}
+	
+	
 	
 }

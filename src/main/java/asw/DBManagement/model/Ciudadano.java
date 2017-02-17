@@ -1,26 +1,37 @@
 package asw.DBManagement.model;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Ciudadano {
-
+	
+	@JsonIgnore
 	@Id
 	@GeneratedValue
 	private Long id;
 	
 	private String nombre;
 	private String apellidos;
-	private String email;
-	private Date fechaNacimiento;
-	private String residencia;
-	private String nacionalidad;
+	private int edad;
 	private String dni;
-	
+	private String email;
+	@JsonIgnore
+	private Date fechaNacimiento;
+	@JsonIgnore
+	private String residencia;
+	@JsonIgnore
+	private String nacionalidad;
+
+	@JsonIgnore
 	private String password;
 
 	public Ciudadano(String nombre, String apellidos, String email, Date fechaNacimiento, String residencia,
@@ -34,6 +45,7 @@ public class Ciudadano {
 		this.nacionalidad = nacionalidad;
 		this.dni = dni;
 		this.password = password;
+		this.edad = calculateAgeByBirthDate(fechaNacimiento);
 	}
 	
 	Ciudadano(){}
@@ -100,6 +112,19 @@ public class Ciudadano {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public int getEdad(){
+		return edad;
+	}
+	
+	private int calculateAgeByBirthDate(Date birthDate){
+		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		LocalDate fechaNac = LocalDate.parse("15/08/1993", fmt);
+		LocalDate ahora = LocalDate.now();
+
+		Period periodo = Period.between(fechaNac, ahora);
+		return periodo.getYears();
 	}
 
 
