@@ -7,5 +7,5 @@ import asw.DBManagement.model.Ciudadano;
 
 public interface CiudadanoRepository extends CrudRepository<Ciudadano, Long> {
 
-	Ciudadano findByNombre(String nombre);
+	Ciudadano findByEmail(String email);
 }

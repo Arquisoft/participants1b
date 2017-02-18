@@ -14,8 +14,8 @@ public class GetParticipantDB implements GetParticipant{
 	private CiudadanoRepository repositorio; 
 	
 	@Override
-	public Ciudadano getCiudadano(String nombre) {
-		Ciudadano citizen = repositorio.findByNombre(nombre);
+	public Ciudadano getCiudadano(String email) {
+		Ciudadano citizen = repositorio.findByEmail(email);
 		return citizen;
 	}
 
