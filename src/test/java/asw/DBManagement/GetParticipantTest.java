@@ -1,5 +1,6 @@
 package asw.DBManagement;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
 import java.text.ParseException;
@@ -9,14 +10,15 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import asw.DBManagement.model.Ciudadano;
+import asw.DBManagement.persistence.CiudadanoRepository;
 
 public class GetParticipantTest {
 
-	// private asw.DBManagement.GetParticipant getParticipant;
-	private asw.DBManagement.model.Ciudadano johnDoe;
+	private Ciudadano johnDoe;
 
 	@Autowired
-	private asw.DBManagement.persistence.CiudadanoRepository repository;
+	private CiudadanoRepository repository;
 
 	@Before
 	public void setUp() {
@@ -33,6 +35,7 @@ public class GetParticipantTest {
 
 	@Test
 	public void testgetCiudadano() {
+		assertThat(johnDoe).isNotNull();
 		when(repository.save(johnDoe)).thenReturn(johnDoe);
 	}
 
