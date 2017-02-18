@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import asw.DBManagement.impl.GetParticipantDB;
 import asw.DBManagement.model.Ciudadano;
 import asw.DBManagement.persistence.CiudadanoRepository;
+import asw.participants.acceso.errores.HTTP404Exception;
 
 @Controller
 public class ControladorHTML {
@@ -29,36 +30,49 @@ public class ControladorHTML {
 	@RequestMapping(value = "/logearse", method = RequestMethod.POST)
 	public String postHTML(@RequestBody String parametros, Model modelo){
 		
-		//parametros = usuario=nombre&password=contraseña
+		//parametros = email=nombre&password=contraseña
 		String[] p = parametros.split("&");
 		
 		//Usuario en blanco
 		if(p[0].length() <= 8){
-			//Lanzar error
+			throw new HTTP404Exception();
 		}
 		
 		//Contraseña en blanco
 		if(p[1].length() <= 9){
-			//Lanzar error
+			throw new HTTP404Exception();
 		}
 		
-		String usuario = p[0].split("=")[1];
+		String email = p[0].split("=")[1];
+		email = email.replace("%40", "@");
 		String password = p[1].split("=")[1];
 		
 		//Comprobar los datos
-		Ciudadano ciudadano = repositorio.findByNombre(usuario);
 		
-		if(!ciudadano.getNombre().equals(usuario))
-		{
-			//Lanzar error
-		}
+		try{
+			Ciudadano ciudadano = repositorio.findByEmail(email);
+			if (ciudadano!= null)
+			{
+				if(!ciudadano.getEmail().equals(email))
+				{
+					//throw new HTTP404Exception();
+					return "error";
+				}
 		
-		if(!ciudadano.getPassword().equals(password))
-		{
-			//Lanzar error
-		}
-		
-		return "datos";
+				if(!ciudadano.getPassword().equals(password))
+				{
+					//throw new HTTP404Exception();
+					return "error";
+				}
+				
+				System.out.println(ciudadano.toString());
+				return "datos";
+			}
+			
+			}catch(Exception e){
+				throw new HTTP404Exception();
+			
+			}
+			return "error";
 	}
-	
 }
