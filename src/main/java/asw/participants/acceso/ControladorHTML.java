@@ -58,7 +58,7 @@ public class ControladorHTML {
 	}
 	
 	@RequestMapping(
-			value = "/user",
+			value = "/change",
 			method = RequestMethod.POST, produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE },
 			consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
 	public ResponseEntity<ParticipantsInfo> postHTML2(@RequestBody ChangeInfo info){
