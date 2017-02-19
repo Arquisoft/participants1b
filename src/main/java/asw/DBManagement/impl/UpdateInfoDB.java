@@ -11,13 +11,13 @@ import asw.DBManagement.persistence.CiudadanoRepository;
 public class UpdateInfoDB implements UpdateInfo {
 
 
-	@Autowired
-	private CiudadanoRepository repositorio; 
-	
-	@Override
-	public boolean UpdateCitizen(Ciudadano ciudadano) {
-		Ciudadano citizen  =repositorio.save(ciudadano);
-		return citizen.equals(ciudadano);
-	}
+    @Autowired
+    private CiudadanoRepository repositorio;
+
+    @Override
+    public boolean UpdateCitizen(Ciudadano ciudadano) {
+        Ciudadano citizen = repositorio.save(ciudadano);
+        return citizen.equals(ciudadano);
+    }
 
 }

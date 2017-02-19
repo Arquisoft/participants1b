@@ -13,22 +13,23 @@ import asw.DBManagement.model.Ciudadano;
 @Component
 public class DatabaseLoader {
 
-	@Autowired
-	private CiudadanoRepository repository;
-	
-	
-	@PostConstruct
-	 private void initDatabase() {
-		
-		Ciudadano c1 = new Ciudadano("Ramon", "Sobrino Llorca", "ramonsobrino@llorca.es",
-				Date.from(Instant.now()), "Oviedo", "Española", "71664900", "123456");
-		
-		repository.save(c1);
-		
-		// Read
-		 Iterable<Ciudadano> all = repository.findAll();
-		 for (Ciudadano customer : all) {
-		 System.out.println(customer);
-		 } 
-	}
+    @Autowired
+    private CiudadanoRepository repository;
+
+
+    @PostConstruct
+    private void initDatabase() {
+
+        Ciudadano c1 = new Ciudadano("Ramon", "Sobrino Llorca", "ramonsobrino@llorca.es",
+                Date.from(Instant.now()), "Oviedo", "Española", "71664900", "123456");
+
+        repository.save(c1);
+
+        // Read
+        Iterable<Ciudadano> all = repository.findAll();
+        for (Ciudadano customer : all) {
+            System.out.println(repository.findByEmail(customer.getEmail()));
+            System.out.println(customer);
+        }
+    }
 }

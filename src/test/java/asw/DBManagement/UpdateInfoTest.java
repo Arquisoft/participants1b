@@ -5,11 +5,20 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import asw.Application;
 import org.junit.Before;
 import org.junit.Test;
 
 import asw.DBManagement.model.Ciudadano;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = Application.class)
+@Transactional
 public class UpdateInfoTest {
 
 	private Ciudadano johnDoe;
@@ -30,6 +39,5 @@ public class UpdateInfoTest {
 	@Test
 	public void testgetCiudadano() {
 		assertThat(johnDoe).isNotNull();
-		// TODO in progress
 	}
 }
