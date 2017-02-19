@@ -22,9 +22,13 @@ public class DatabaseLoader {
 		
 		Ciudadano c1 = new Ciudadano("Ramon", "Sobrino Llorca", "ramonsobrino@llorca.es",
 				Date.from(Instant.now()), "Oviedo", "Española", "71664900", "123456");
-		
+		Ciudadano c2 = new Ciudadano("Pablo", "Garcia", "pablo@gmail.es",
+				Date.from(Instant.now()), "Oviedo", "Española", "79845632", "111111");
+		Ciudadano c3 = new Ciudadano("Javier", "Fernandez", "javivaldu@gmail.es",
+				Date.from(Instant.now()), "Oviedo", "Española", "78945612", "999999");
 		repository.save(c1);
-		
+		repository.save(c2);
+		repository.save(c3);
 		// Read
 		 Iterable<Ciudadano> all = repository.findAll();
 		 for (Ciudadano customer : all) {
