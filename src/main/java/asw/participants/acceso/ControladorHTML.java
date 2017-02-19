@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import asw.DBManagement.GetParticipant;
 import asw.DBManagement.impl.GetParticipantDB;
+import asw.DBManagement.impl.UpdateInfoDB;
 import asw.DBManagement.model.Ciudadano;
 import asw.DBManagement.persistence.CiudadanoRepository;
 import asw.participants.acceso.errores.HTTP404Exception;
@@ -24,6 +25,8 @@ public class ControladorHTML {
 	private GetParticipantDB getParticipantDB;
 	@Autowired
 	private CiudadanoRepository repositorio;
+	@Autowired
+	private UpdateInfoDB updateInfo;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String getHTML(Model modelo){
@@ -31,7 +34,7 @@ public class ControladorHTML {
 	}
 	
 	@RequestMapping(
-			value = "/logearse",
+			value = "/user",
 			method = RequestMethod.POST, produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE },
 			consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
 	public ResponseEntity<ParticipantsInfo> postHTML(@RequestBody ParticipantsLogin info){
@@ -50,6 +53,27 @@ public class ControladorHTML {
 		{
 			throw new HTTP404Exception();
 		}
+		
+		return new ResponseEntity<ParticipantsInfo>(new ParticipantsInfo(ci), HttpStatus.OK);
+	}
+	
+	@RequestMapping(
+			value = "/user",
+			method = RequestMethod.POST, produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE },
+			consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
+	public ResponseEntity<ParticipantsInfo> postHTML2(@RequestBody ChangeInfo info){
+	
+		if (info == null) {
+			throw new HTTP404Exception();
+		}
+		
+		Ciudadano ci = updateInfo.UpdateCitizen(info);
+		
+		
+		if (ci == null) {
+			throw new HTTP404Exception();
+		}
+		
 		
 		return new ResponseEntity<ParticipantsInfo>(new ParticipantsInfo(ci), HttpStatus.OK);
 	}
