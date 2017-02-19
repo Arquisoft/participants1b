@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import asw.DBManagement.model.Ciudadano;
 
-@XmlRootElement(name = "UserInfo")
+@XmlRootElement(name = "ParticipantInfo")
 
 public class ParticipantsInfo {
 
