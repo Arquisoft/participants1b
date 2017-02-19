@@ -1,12 +1,16 @@
 package asw.participants.acceso;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import asw.DBManagement.GetParticipant;
 import asw.DBManagement.impl.GetParticipantDB;
 import asw.DBManagement.model.Ciudadano;
 import asw.DBManagement.persistence.CiudadanoRepository;
@@ -26,53 +30,28 @@ public class ControladorHTML {
 		return "login";
 	}
 	
-	//TODO Tratamiento de errores
-	@RequestMapping(value = "/logearse", method = RequestMethod.POST)
-	public String postHTML(@RequestBody String parametros, Model modelo){
-		
-		//parametros = email=nombre&password=contraseña
-		String[] p = parametros.split("&");
-		
-		//Usuario en blanco
-		if(p[0].length() <= 8){
+	@RequestMapping(
+			value = "/logearse",
+			method = RequestMethod.POST, produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE },
+			consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
+	public ResponseEntity<ParticipantsInfo> postHTML(@RequestBody ParticipantsLogin info){
+	
+		if (info == null) {
 			throw new HTTP404Exception();
 		}
 		
-		//Contraseña en blanco
-		if(p[1].length() <= 9){
+		Ciudadano ci = getParticipantDB.getCiudadano(info);
+		
+		
+		if (ci == null) {
+			throw new HTTP404Exception();
+		}
+		if(!ci.getPassword().equals(info.getPassword()))
+		{
 			throw new HTTP404Exception();
 		}
 		
-		String email = p[0].split("=")[1];
-		email = email.replace("%40", "@");
-		String password = p[1].split("=")[1];
-		
-		//Comprobar los datos
-		
-		try{
-			Ciudadano ciudadano = repositorio.findByEmail(email);
-			if (ciudadano!= null)
-			{
-				if(!ciudadano.getEmail().equals(email))
-				{
-					//throw new HTTP404Exception();
-					return "error";
-				}
-		
-				if(!ciudadano.getPassword().equals(password))
-				{
-					//throw new HTTP404Exception();
-					return "error";
-				}
-				
-				System.out.println(ciudadano.toString());
-				return "datos";
-			}
-			
-			}catch(Exception e){
-				throw new HTTP404Exception();
-			
-			}
-			return "error";
+		return new ResponseEntity<ParticipantsInfo>(new ParticipantsInfo(ci), HttpStatus.OK);
 	}
+	
 }
