@@ -39,6 +39,4 @@ public class ChangePassword {
 	public String toString() {
 		return "ChangeInfo [password=" + password + ", email=" + email + ", newPassword=" + newPassword + "]";
 	}
-	
-	
 }
