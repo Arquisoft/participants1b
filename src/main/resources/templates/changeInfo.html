@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Change Info Password</title>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+</head>
+<body>
+	<form action="changeInfo" method="get">
+	
+	<table>
+        <tr>
+            <td>Contraseña actual: </td>
+            <td><input type="password" name="password"/></td>
+        </tr>
+        <tr>
+            <td>Nueva contraseña: </td>
+            <td><input type="password" name="newPassword"/></td>
+        </tr>
+        <tr>
+            <td>Repite contraseña: </td>
+            <td><input type="password" name="newPasswordAgain"/></td>
+        </tr>
+        <tr>
+            <td colspan="2" align="right">
+                <input type="submit" value="Change"/>
+            </td>
+        </tr>
+    </table>
+    </form>
+    <p th:text="${error} " />
+</body>
+</html>

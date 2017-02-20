@@ -6,9 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+
 @Entity
 public class Ciudadano {
-
+	
 	@Id
 	@GeneratedValue
 	private Long id;
@@ -22,7 +23,10 @@ public class Ciudadano {
 	private String dni;
 
 	private String password;
-
+	
+	
+	
+	
 	public Ciudadano(String nombre, String apellidos, String email, Date fechaNacimiento, String residencia,
 			String nacionalidad, String dni, String password) {
 		super();

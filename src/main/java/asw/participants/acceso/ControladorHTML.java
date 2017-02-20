@@ -1,7 +1,6 @@
 package asw.participants.acceso;
 
 import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import asw.DBManagement.impl.GetParticipantDB;
 import asw.DBManagement.model.Ciudadano;
 import asw.DBManagement.persistence.CiudadanoRepository;
-import asw.participants.acceso.errores.HTTP404Exception;
 
 @Controller
 public class ControladorHTML {
@@ -30,20 +28,26 @@ public class ControladorHTML {
 		return "login";
 	}
 	
+	@RequestMapping(value = "/changeInfo", method = RequestMethod.GET)
+	public String getHTMLChange(Model modelo){
+		return "changeInfo";
+	}
+	
 	@RequestMapping(value = "/user", method = RequestMethod.POST)
 	public String postHTML(@RequestBody String parametros, Model modelo){
-		
 		//parametros = email=nombre&password=contraseña
 		String[] p = parametros.split("&");
 		
 		//Usuario en blanco
 		if(p[0].length() <= 8){
-			throw new HTTP404Exception();
+			modelo.addAttribute("error", "Usuario en blanco.");
+			return "error";
 		}
 		
 		//Contraseña en blanco
 		if(p[1].length() <= 9){
-			throw new HTTP404Exception();
+			modelo.addAttribute("error", "Contraseña en blanco.");
+			return "error";
 		}
 		
 		String email = p[0].split("=")[1];
@@ -58,12 +62,14 @@ public class ControladorHTML {
 			{
 				if(!ciudadano.getEmail().equals(email))
 				{
-					throw new HTTP404Exception();
+					modelo.addAttribute("error", "Email no coincide.");
+					return "error";
 				}
 		
 				if(!ciudadano.getPassword().equals(password))
 				{
-					throw new HTTP404Exception();
+					modelo.addAttribute("error", "La contraseña no coincide con la del usuario.");
+					return "error";
 				}
 
 				
@@ -75,16 +81,18 @@ public class ControladorHTML {
 					modelo.addAttribute("edad", edad(f));
 					modelo.addAttribute("dni", ciudadano.getDni());
 					modelo.addAttribute("email", ciudadano.getEmail());
-					
 				}
 				return "user";
 			}
 			
+			modelo.addAttribute("error", "Usuario no registrado.");
+			return "error";
+			
 			}catch(Exception e){
-				throw new HTTP404Exception();
+				modelo.addAttribute("error", "Ha ocurrido en error al conseguir los datos del usuario.");
+				return "error";
 			
 			}
-			return "error";
 	}
 	
 	private int edad(String fecha_nac) {     
