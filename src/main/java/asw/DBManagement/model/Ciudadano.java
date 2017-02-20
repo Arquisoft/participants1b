@@ -12,7 +12,7 @@ public class Ciudadano {
 	@Id
 	@GeneratedValue
 	private Long id;
-	
+
 	private String nombre;
 	private String apellidos;
 	private String email;
@@ -20,7 +20,7 @@ public class Ciudadano {
 	private String residencia;
 	private String nacionalidad;
 	private String dni;
-	
+
 	private String password;
 
 	public Ciudadano(String nombre, String apellidos, String email, Date fechaNacimiento, String residencia,
@@ -35,9 +35,9 @@ public class Ciudadano {
 		this.dni = dni;
 		this.password = password;
 	}
-	
+
 	Ciudadano(){}
-	
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -109,6 +109,6 @@ public class Ciudadano {
 				+ fechaNacimiento + ", residencia=" + residencia + ", nacionalidad=" + nacionalidad + ", dni=" + dni
 				+ ", password=" + password + "]";
 	}
-	
-	
+
+
 }
