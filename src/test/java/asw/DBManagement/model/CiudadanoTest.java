@@ -72,37 +72,47 @@ public class CiudadanoTest {
 
     @Test
     public void getApellidos() throws Exception {
-
+        assertThat(johnDoe.getApellidos()).isEqualTo(apellidos);
     }
 
     @Test
     public void setApellidos() throws Exception {
-
+        johnDoe.setApellidos("apellidos");
+        assertThat(johnDoe.getApellidos()).isEqualTo("apellidos");
     }
 
     @Test
     public void getEmail() throws Exception {
-
+        assertThat(johnDoe.getEmail()).isEqualTo(email);
     }
 
     @Test
     public void setEmail() throws Exception {
-
+        johnDoe.setEmail("email");
+        assertThat(johnDoe.getEmail()).isEqualTo("email");
     }
 
     @Test
     public void getFechaNacimiento() throws Exception {
-
+        assertThat(johnDoe.getFechaNacimiento()).isEqualTo(fechaNacimiento);
     }
 
     @Test
     public void setFechaNacimiento() throws Exception {
-
+        Date newBornDate = null;
+        try {
+            newBornDate = new SimpleDateFormat("yyyy-MM-dd").parse("1942-01-01");
+            johnDoe.setFechaNacimiento(newBornDate);
+            assertThat(johnDoe.getFechaNacimiento()).isEqualTo(newBornDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+       ;
     }
 
     @Test
     public void getResidencia() throws Exception {
-
+        assertThat(johnDoe.getResidencia()).isEqualTo(residencia);
     }
 
     @Test
