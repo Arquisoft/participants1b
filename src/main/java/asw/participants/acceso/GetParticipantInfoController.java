@@ -22,7 +22,7 @@ import asw.DBManagement.model.Ciudadano;
 import asw.participants.GetParticipantInfo;
 import asw.participants.acceso.errores.HTTP404Exception;
 
-@Controller
+@RestController
 public class GetParticipantInfoController implements GetParticipantInfo{
 	
 	@Autowired
@@ -35,14 +35,11 @@ public class GetParticipantInfoController implements GetParticipantInfo{
 		this.getParticipantDB = getParticipant;
 	}
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String getHTML(Model modelo){
-		return "login";
-	}
 	
 	@RequestMapping(
 			value = "/user",
-			method = RequestMethod.POST, headers = "content-type=application/x-www-form-urlencoded")
+			method = RequestMethod.POST, produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE },
+					   consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE   })
 	public ResponseEntity<ParticipantsInfo> getInfoParticipant(@ModelAttribute ParticipantsLogin info){
 		
 		if (info.getEmail() == null || info.getPassword() == null
