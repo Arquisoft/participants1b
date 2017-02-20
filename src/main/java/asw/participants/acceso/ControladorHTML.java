@@ -74,8 +74,21 @@ public class ControladorHTML {
 					return "error";
 				}
 				
-				System.out.println(ciudadano.toString());
-				return "datos";
+//				"firstName": Nombre,
+//				 "lastName": Apellidos,
+//				 "edad": Edad (se calculará a partir de la fecha de nacimiento)
+//				"ID": Número documento identificativo,
+//				 "email": email
+
+				
+				if(ciudadano != null){
+					modelo.addAttribute("apellido", ciudadano.getApellidos());
+					modelo.addAttribute("nombre", ciudadano.getNombre());
+					modelo.addAttribute("edad", ciudadano.getFechaNacimiento());
+					modelo.addAttribute("dni", ciudadano.getDni());
+					modelo.addAttribute("email", ciudadano.getEmail());
+				}
+				return "user";
 			}
 			
 			}catch(Exception e){
