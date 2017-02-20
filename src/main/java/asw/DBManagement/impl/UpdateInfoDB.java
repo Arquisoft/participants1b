@@ -6,8 +6,7 @@ import org.springframework.stereotype.Component;
 import asw.DBManagement.UpdateInfo;
 import asw.DBManagement.model.Ciudadano;
 import asw.DBManagement.persistence.CiudadanoRepository;
-import asw.participants.acceso.ChangeInfo;
-import asw.participants.acceso.ParticipantsInfo;
+import asw.participants.acceso.ChangePassword;
 
 @Component
 public class UpdateInfoDB implements UpdateInfo {
@@ -23,11 +22,11 @@ public class UpdateInfoDB implements UpdateInfo {
 	}
 
 	@Override
-	public Ciudadano UpdateCitizen(ChangeInfo info) {
+	public Ciudadano UpdateCitizen(ChangePassword info) {
 
 		Ciudadano citizen = repositorio.findByEmail(info.getEmail());
 		if(citizen==null)return null;
-		if(citizen.getPassword().equals(info.getPassword())) return null;
+		if(!citizen.getPassword().equals(info.getPassword())) return null;
 		
 		citizen.setPassword(info.getNewPassword());
 		repositorio.save(citizen);

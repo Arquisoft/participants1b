@@ -3,15 +3,18 @@ package asw.participants.acceso;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "ChangeInfo")
-public class ChangeInfo {
+@XmlRootElement(name = "ChangePassword")
+public class ChangePassword {
 
-	
-	private String password;
 	private String email;
+	private String password;
 	private String newPassword;
 	
-	public ChangeInfo(String email,String password, String newPassword) {
+	public ChangePassword(){
+		
+	}
+	
+	public ChangePassword(String email,String password, String newPassword) {
 		this.email = email;
 		this.email = password;
 		this.newPassword=newPassword;

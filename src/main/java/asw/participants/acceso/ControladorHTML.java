@@ -1,5 +1,8 @@
 package asw.participants.acceso;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -33,49 +36,9 @@ public class ControladorHTML {
 		return "login";
 	}
 	
-	@RequestMapping(
-			value = "/user",
-			method = RequestMethod.POST, produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE },
-			consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
-	public ResponseEntity<ParticipantsInfo> postHTML(@RequestBody ParticipantsLogin info){
-	
-		if (info == null) {
-			throw new HTTP404Exception();
-		}
-		
-		Ciudadano ci = getParticipantDB.getCiudadano(info);
-		
-		
-		if (ci == null) {
-			throw new HTTP404Exception();
-		}
-		if(!ci.getPassword().equals(info.getPassword()))
-		{
-			throw new HTTP404Exception();
-		}
-		
-		return new ResponseEntity<ParticipantsInfo>(new ParticipantsInfo(ci), HttpStatus.OK);
-	}
-	
-	@RequestMapping(
-			value = "/change",
-			method = RequestMethod.POST, produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE },
-			consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
-	public ResponseEntity<ParticipantsInfo> postHTML2(@RequestBody ChangeInfo info){
-	
-		if (info == null) {
-			throw new HTTP404Exception();
-		}
-		
-		Ciudadano ci = updateInfo.UpdateCitizen(info);
-		
-		
-		if (ci == null) {
-			throw new HTTP404Exception();
-		}
-		
-		
-		return new ResponseEntity<ParticipantsInfo>(new ParticipantsInfo(ci), HttpStatus.OK);
-	}
+//	@RequestMapping(value = "/logearse", method = RequestMethod.POST)
+//	public String postHTML(@RequestBody String parametros, Model modelo){
+//		
+//	}
 	
 }
