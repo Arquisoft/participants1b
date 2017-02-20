@@ -107,7 +107,6 @@ public class CiudadanoTest {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-       ;
     }
 
     @Test
@@ -117,36 +116,40 @@ public class CiudadanoTest {
 
     @Test
     public void setResidencia() throws Exception {
-
+        johnDoe.setResidencia("Deimos");
+        assertThat(johnDoe.getResidencia()).isEqualTo("Deimos");
     }
 
     @Test
     public void getNacionalidad() throws Exception {
-
+        assertThat(johnDoe.getNacionalidad()).isEqualTo(nacionalidad);
     }
 
     @Test
     public void setNacionalidad() throws Exception {
-
+        johnDoe.setNacionalidad("Earth");
+        assertThat(johnDoe.getNacionalidad()).isEqualTo("Earth");
     }
 
     @Test
     public void getDni() throws Exception {
-
+        assertThat(johnDoe.getDni()).isEqualTo(dni);
     }
 
     @Test
     public void setDni() throws Exception {
-
+        johnDoe.setDni("87654321");
+        assertThat(johnDoe.getDni()).isEqualTo("87654321");
     }
 
     @Test
     public void getPassword() throws Exception {
-
+        assertThat(johnDoe.getPassword()).isEqualTo(password);
     }
 
     @Test
     public void setPassword() throws Exception {
-
+        johnDoe.setPassword("Password");
+        assertThat(johnDoe.getPassword()).isEqualTo("Password");
     }
 }
