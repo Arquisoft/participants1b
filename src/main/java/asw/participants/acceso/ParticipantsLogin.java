@@ -15,7 +15,7 @@ public class ParticipantsLogin {
 	}
 	public ParticipantsLogin(String email,String password) {
 		this.email = email;
-		this.email = password;
+		this.password = password;
 	}
 
 	@XmlElement
