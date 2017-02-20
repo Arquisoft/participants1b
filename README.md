@@ -17,6 +17,6 @@ Skeleton of participants module
 
 - Rodrigo Benjy Rojas Nakamura (UO242509)
 
-- Javier Valduvieco García
+- Javier Valduvieco García (UO239884)
 
 - Alejandro Sáez Morollón (UO198755)
