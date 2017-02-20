@@ -12,25 +12,13 @@ import asw.participants.acceso.ChangePassword;
 public class UpdateInfoDB implements UpdateInfo {
 
 
-    @Autowired
-    private CiudadanoRepository repositorio;
-
-    @Override
-    public boolean UpdateCitizen(Ciudadano ciudadano) {
-        Ciudadano citizen = repositorio.save(ciudadano);
-        return citizen.equals(ciudadano);
-    }
+	@Autowired
+	private CiudadanoRepository repositorio;
 
 	@Override
-	public Ciudadano UpdateCitizen(ChangePassword info) {
-
-		Ciudadano citizen = repositorio.findByEmail(info.getEmail());
-		if(citizen==null)return null;
-		if(!citizen.getPassword().equals(info.getPassword())) return null;
-		
-		citizen.setPassword(info.getNewPassword());
-		repositorio.save(citizen);
-		return citizen;
+	public boolean UpdateCitizen(Ciudadano ciudadano) {
+		Ciudadano citizen  =repositorio.save(ciudadano);
+		return citizen.equals(ciudadano);
 	}
 
 	@Override
@@ -39,7 +27,7 @@ public class UpdateInfoDB implements UpdateInfo {
 		Ciudadano citizen = repositorio.findByEmail(info.getEmail());
 		if(citizen==null)return null;
 		if(!citizen.getPassword().equals(info.getPassword())) return null;
-		
+
 		citizen.setPassword(info.getNewPassword());
 		repositorio.save(citizen);
 		return citizen;
