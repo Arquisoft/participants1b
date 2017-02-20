@@ -1,5 +1,7 @@
 package asw.DBManagement.persistence;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Date;
 
@@ -13,6 +15,7 @@ import asw.DBManagement.model.Ciudadano;
 @Component
 public class DatabaseLoader {
 
+<<<<<<< HEAD
     @Autowired
     private CiudadanoRepository repository;
 
@@ -32,4 +35,31 @@ public class DatabaseLoader {
             System.out.println(customer);
         }
     }
+=======
+	@Autowired
+	private CiudadanoRepository repository;
+	
+	
+	@PostConstruct
+	 private void initDatabase() throws ParseException {
+		
+		Ciudadano c1 = new Ciudadano("Ramon", "Sobrino Llorca", "ramonsobrino@llorca.es",
+				new SimpleDateFormat("yyyy-MM-dd").parse("1990-02-02"), "Oviedo", "Española", "71664900", "123456");
+		Ciudadano c2 = new Ciudadano("Pablo", "Garcia", "pablo@gmail.es",
+				new SimpleDateFormat("yyyy-MM-dd").parse("1995-10-31"), "Oviedo", "Española", "79845632", "111111");
+		Ciudadano c3 = new Ciudadano("Javier", "Fernandez", "javivaldu@gmail.es",
+				new SimpleDateFormat("yyyy-MM-dd").parse("1992-02-02"), "Oviedo", "Española", "78945612", "999999");
+		Ciudadano c4 = new Ciudadano("Benjy", "Rojas", "benjy@gmail.es",
+				new SimpleDateFormat("yyyy-MM-dd").parse("1993-02-02"), "Oviedo", "Española", "78945612", "222222");
+		repository.save(c1);
+		repository.save(c2);
+		repository.save(c3);
+		repository.save(c4);
+		// Read
+		 Iterable<Ciudadano> all = repository.findAll();
+		 for (Ciudadano customer : all) {
+		 System.out.println(customer);
+		 } 
+	}
+>>>>>>> master
 }

@@ -1,16 +1,20 @@
 package asw.DBManagement;
 
 import static org.assertj.core.api.Assertions.assertThat;
-//import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.when;
 
 import asw.Application;
 import asw.DBManagement.model.Ciudadano;
-//import asw.DBManagement.persistence.CiudadanoRepository;
+import asw.DBManagement.persistence.CiudadanoRepository;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-//import org.springframework.beans.factory.annotation.Autowired;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,8 +29,12 @@ import java.util.Date;
 public class GetParticipantTest {
     private Ciudadano johnDoe;
 
-    //@Autowired
-    //private CiudadanoRepository repository;
+    @Autowired
+    @Mock
+    private CiudadanoRepository repository;
+
+    @Rule
+    public MockitoRule mockitoRule = MockitoJUnit.rule();
 
     @Before
     public void setUp() throws Exception {
@@ -52,7 +60,8 @@ public class GetParticipantTest {
     @Test
     public void getCiudadano() throws Exception {
         assertThat(johnDoe).isNotNull();
-        //when(repository.save(johnDoe)).thenReturn(johnDoe);
+
+        when(repository.save(johnDoe)).thenReturn(johnDoe);
     }
 
 }

@@ -1,6 +1,7 @@
 package asw.DBManagement;
 
 import asw.DBManagement.model.Ciudadano;
+import asw.participants.acceso.ParticipantsLogin;
 
 /**
  * 
@@ -10,4 +11,5 @@ import asw.DBManagement.model.Ciudadano;
 
 public interface GetParticipant{
 	public Ciudadano getCiudadano(String email);
+	public Ciudadano getCiudadano(ParticipantsLogin participante);
 }

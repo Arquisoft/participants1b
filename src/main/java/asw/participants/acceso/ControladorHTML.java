@@ -1,5 +1,9 @@
 package asw.participants.acceso;
 
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,8 +30,7 @@ public class ControladorHTML {
 		return "login";
 	}
 	
-	//TODO Tratamiento de errores
-	@RequestMapping(value = "/logearse", method = RequestMethod.POST)
+	@RequestMapping(value = "/user", method = RequestMethod.POST)
 	public String postHTML(@RequestBody String parametros, Model modelo){
 		
 		//parametros = email=nombre&password=contraseña
@@ -55,18 +58,26 @@ public class ControladorHTML {
 			{
 				if(!ciudadano.getEmail().equals(email))
 				{
-					//throw new HTTP404Exception();
-					return "error";
+					throw new HTTP404Exception();
 				}
 		
 				if(!ciudadano.getPassword().equals(password))
 				{
-					//throw new HTTP404Exception();
-					return "error";
+					throw new HTTP404Exception();
 				}
+
 				
-				System.out.println(ciudadano.toString());
-				return "datos";
+				if(ciudadano != null){
+					modelo.addAttribute("apellido", ciudadano.getApellidos());
+					modelo.addAttribute("nombre", ciudadano.getNombre());
+					String f = ciudadano.getFechaNacimiento().toString().substring(0, 10);
+					System.out.println(edad(f));
+					modelo.addAttribute("edad", edad(f));
+					modelo.addAttribute("dni", ciudadano.getDni());
+					modelo.addAttribute("email", ciudadano.getEmail());
+					
+				}
+				return "user";
 			}
 			
 			}catch(Exception e){
@@ -75,4 +86,25 @@ public class ControladorHTML {
 			}
 			return "error";
 	}
+	
+	private int edad(String fecha_nac) {     
+		   
+	    Date fechaActual = new Date();
+	    SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+	    String hoy = formato.format(fechaActual);
+	    String[] dat1 = fecha_nac.split("-");
+	    String[] dat2 = hoy.split("-");
+	    int edad = Integer.parseInt(dat2[0]) - Integer.parseInt(dat1[0]);
+	    int mes = Integer.parseInt(dat2[1]) - Integer.parseInt(dat1[1]);
+	    if (mes < 0) {
+	    	edad = edad - 1;
+	    } else if (mes == 0) {
+	      int dia = Integer.parseInt(dat2[0]) - Integer.parseInt(dat1[0]);
+	      if (dia > 0) {
+	    	  edad = edad - 1;
+	      }
+	    }
+	    return edad;
+	    
+	  }
 }

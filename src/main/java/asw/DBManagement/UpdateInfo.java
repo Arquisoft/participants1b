@@ -1,6 +1,7 @@
 package asw.DBManagement;
 
 import asw.DBManagement.model.Ciudadano;
+import asw.participants.acceso.ChangePassword;
 
 /**
  * 
@@ -10,4 +11,5 @@ import asw.DBManagement.model.Ciudadano;
 public interface UpdateInfo{
 
 	public boolean UpdateCitizen(Ciudadano ciudadano);
+	public Ciudadano UpdateCitizen(ChangePassword info);
 }
