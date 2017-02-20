@@ -25,7 +25,7 @@ public class DatabaseLoader {
 		Ciudadano c1 = new Ciudadano("Ramon", "Sobrino Llorca", "ramonsobrino@llorca.es",
 				new SimpleDateFormat("yyyy-MM-dd").parse("1990-02-02"), "Oviedo", "Española", "71664900", "123456");
 		Ciudadano c2 = new Ciudadano("Pablo", "Garcia", "pablo@gmail.es",
-				new SimpleDateFormat("yyyy-MM-dd").parse("1991-02-02"), "Oviedo", "Española", "79845632", "111111");
+				new SimpleDateFormat("yyyy-MM-dd").parse("1995-10-31"), "Oviedo", "Española", "79845632", "111111");
 		Ciudadano c3 = new Ciudadano("Javier", "Fernandez", "javivaldu@gmail.es",
 				new SimpleDateFormat("yyyy-MM-dd").parse("1992-02-02"), "Oviedo", "Española", "78945612", "999999");
 		Ciudadano c4 = new Ciudadano("Benjy", "Rojas", "benjy@gmail.es",

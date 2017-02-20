@@ -1,5 +1,6 @@
 package asw.participants.acceso;
 
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Date;
 
@@ -69,9 +70,12 @@ public class ControladorHTML {
 				if(ciudadano != null){
 					modelo.addAttribute("apellido", ciudadano.getApellidos());
 					modelo.addAttribute("nombre", ciudadano.getNombre());
-					modelo.addAttribute("edad", ciudadano.getFechaNacimiento());
+					String f = ciudadano.getFechaNacimiento().toString().substring(0, 10);
+					System.out.println(edad(f));
+					modelo.addAttribute("edad", edad(f));
 					modelo.addAttribute("dni", ciudadano.getDni());
 					modelo.addAttribute("email", ciudadano.getEmail());
+					
 				}
 				return "user";
 			}
@@ -83,4 +87,24 @@ public class ControladorHTML {
 			return "error";
 	}
 	
+	private int edad(String fecha_nac) {     
+		   
+	    Date fechaActual = new Date();
+	    SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+	    String hoy = formato.format(fechaActual);
+	    String[] dat1 = fecha_nac.split("-");
+	    String[] dat2 = hoy.split("-");
+	    int edad = Integer.parseInt(dat2[0]) - Integer.parseInt(dat1[0]);
+	    int mes = Integer.parseInt(dat2[1]) - Integer.parseInt(dat1[1]);
+	    if (mes < 0) {
+	    	edad = edad - 1;
+	    } else if (mes == 0) {
+	      int dia = Integer.parseInt(dat2[0]) - Integer.parseInt(dat1[0]);
+	      if (dia > 0) {
+	    	  edad = edad - 1;
+	      }
+	    }
+	    return edad;
+	    
+	  }
 }
