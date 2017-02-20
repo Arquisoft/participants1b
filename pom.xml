@@ -25,12 +25,12 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-rest</artifactId>
 		</dependency>
-
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -55,7 +55,9 @@
 			<groupId>com.jayway.jsonpath</groupId>
 			<artifactId>json-path</artifactId>
 			<scope>test</scope>
-		</dependency>	
+		</dependency>
+
+	
 	</dependencies>
 
 	<properties>
@@ -156,4 +158,13 @@
 		</pluginRepository>
 	</pluginRepositories>
 
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>cljsjs</groupId>
+				<artifactId>bcrypt</artifactId>
+				<version>2.3.0-0</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 </project>
