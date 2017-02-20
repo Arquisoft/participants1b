@@ -32,10 +32,5 @@ public class DatabaseLoader {
 		repository.save(c2);
 		repository.save(c3);
 		repository.save(c4);
-		// Read
-		 Iterable<Ciudadano> all = repository.findAll();
-		 for (Ciudadano customer : all) {
-		 System.out.println(customer);
-		 } 
 	}
 }

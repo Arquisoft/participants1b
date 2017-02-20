@@ -42,10 +42,8 @@ public class UpdateInfoController {
 		
 		Ciudadano ci = updateInfo.UpdateCitizen(info);
 		
-		System.out.println(info.getEmail());
-		
 		if (ci == null) {
-			throw new HTTP404Exception("No se ha encontrado al usuario");
+			throw new HTTP404Exception("Email o contraseña incorrectas");
 		}
 		
 		

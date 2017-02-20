@@ -16,7 +16,7 @@ public class ChangePassword {
 	
 	public ChangePassword(String email,String password, String newPassword) {
 		this.email = email;
-		this.email = password;
+		this.password = password;
 		this.newPassword=newPassword;
 	}
 
