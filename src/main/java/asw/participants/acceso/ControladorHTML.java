@@ -20,7 +20,7 @@ import asw.DBManagement.model.Ciudadano;
 import asw.DBManagement.persistence.CiudadanoRepository;
 import asw.participants.acceso.errores.HTTP404Exception;
 
-//@Controller
+@Controller
 public class ControladorHTML {
 
 	@SuppressWarnings("unused")

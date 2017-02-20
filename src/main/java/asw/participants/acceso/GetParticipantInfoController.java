@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -42,12 +41,14 @@ public class GetParticipantInfoController implements GetParticipantInfo{
 	
 	@RequestMapping(
 			value = "/user",
-			method = RequestMethod.POST, headers = "content-type=application/x-www-form-urlencoded")
-	public ResponseEntity<ParticipantsInfo> getInfoParticipant(@ModelAttribute ParticipantsLogin info){
+			method = RequestMethod.POST,
+			produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE },
+			consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
+	public ResponseEntity<ParticipantsInfo> getInfoParticipant(@RequestBody ParticipantsLogin info){
 		
 		if (info.getEmail() == null || info.getPassword() == null
 				|| info.getEmail().equals("") || info.getPassword().equals("")) {
-			throw new HTTP404Exception("No se han introducido datos");
+			throw new HTTP404Exception("No se han intriducido datos");
 		}
 		
         Pattern pattern = Pattern.compile("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]");
