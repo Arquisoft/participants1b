@@ -1,33 +1,32 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Login Participants 1b</title>
+<title>Change Info Password</title>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 </head>
 <body>
-	<form action="changeInfo" method="post">
+	<form action="changeInfo" method="get">
 	
 	<table>
         <tr>
-             <td colspan="2" align="center">Login Participants</td>
+            <td>ContraseÃ±a actual: </td>
+            <td><input type="password" name="password"/></td>
         </tr>
         <tr>
-            <td>Contraseña actual:</td>
-            <td><input type="text" name="password"/></td>
-        </tr>
-        <tr>
-            <td>Nueva contraseña:</td>
+            <td>Nueva contraseÃ±a: </td>
             <td><input type="password" name="newPassword"/></td>
         </tr>
         <tr>
-            <td>Repite contraseña:</td>
+            <td>Repite contraseÃ±a: </td>
             <td><input type="password" name="newPasswordAgain"/></td>
         </tr>
         <tr>
             <td colspan="2" align="right">
-                <input type="submit" value="Comprobar"/>
+                <input type="submit" value="Change"/>
             </td>
         </tr>
     </table>
     </form>
+    <p th:text="${error} " />
 </body>
 </html>

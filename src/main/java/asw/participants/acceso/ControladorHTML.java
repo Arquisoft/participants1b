@@ -1,29 +1,21 @@
 package asw.participants.acceso;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import asw.DBManagement.GetParticipant;
 import asw.DBManagement.impl.GetParticipantDB;
 import asw.DBManagement.impl.UpdateInfoDB;
 import asw.DBManagement.model.Ciudadano;
 import asw.DBManagement.persistence.CiudadanoRepository;
-import asw.participants.acceso.errores.HTTP404Exception;
 
 @Controller
 public class ControladorHTML {
+	
+	private static String em;
 
 	@SuppressWarnings("unused")
 	@Autowired
@@ -33,27 +25,31 @@ public class ControladorHTML {
 	@Autowired
 	private UpdateInfoDB updateInfo;
 	
-	private String emailSession;
-	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String getHTML(Model modelo){
 		return "login";
 	}
 	
+	@RequestMapping(value = "/changeInfo", method = RequestMethod.GET)
+	public String getHTMLChange(Model modelo){
+		return "changeInfo";
+	}
+	
 	@RequestMapping(value = "/user", method = RequestMethod.POST)
 	public String postHTML(@RequestBody String parametros, Model modelo){
-		
 		//parametros = email=nombre&password=contraseña
 		String[] p = parametros.split("&");
 		
 		//Usuario en blanco
 		if(p[0].length() <= 8){
-			throw new HTTP404Exception();
+			modelo.addAttribute("error", "Usuario en blanco.");
+			return "error";
 		}
 		
 		//Contraseña en blanco
 		if(p[1].length() <= 9){
-			throw new HTTP404Exception();
+			modelo.addAttribute("error", "Contraseña en blanco.");
+			return "error";
 		}
 		
 		String email = p[0].split("=")[1];
@@ -68,13 +64,13 @@ public class ControladorHTML {
 			{
 				if(!ciudadano.getEmail().equals(email))
 				{
-					//throw new HTTP404Exception();
+					modelo.addAttribute("error", "Email no coincide.");
 					return "error";
 				}
 		
 				if(!ciudadano.getPassword().equals(password))
 				{
-					//throw new HTTP404Exception();
+					modelo.addAttribute("error", "La contraseña no coincide con la del usuario.");
 					return "error";
 				}
 				
@@ -86,65 +82,24 @@ public class ControladorHTML {
 
 				
 				if(ciudadano != null){
-					emailSession = ciudadano.getEmail();
 					modelo.addAttribute("apellido", ciudadano.getApellidos());
 					modelo.addAttribute("nombre", ciudadano.getNombre());
 					modelo.addAttribute("edad", ciudadano.getFechaNacimiento());
 					modelo.addAttribute("dni", ciudadano.getDni());
 					modelo.addAttribute("email", ciudadano.getEmail());
+					em = ciudadano.getEmail();
 				}
 				return "user";
 			}
 			
+			modelo.addAttribute("error", "Usuario no registrado.");
+			return "error";
+			
 			}catch(Exception e){
-				throw new HTTP404Exception();
+				modelo.addAttribute("error", "Ha ocurrido en error al conseguir los datos del usuario.");
+				return "error";
 			
 			}
-			return "error";
-	}
-	
-	@RequestMapping(value = "/changeInfo", method = RequestMethod.POST)
-	public String changeInfo(@RequestBody String parametros, Model modelo){
-		String[] p = parametros.split("&");
-		
-		//Contraseña
-		if(p[0].length() <= 9){
-			modelo.addAttribute("error", "Contraseña en blanco");
-			return "error";
-		}
-		
-		//Nueva Contraseña en blanco
-		if(p[1].length() <= 12){
-			modelo.addAttribute("error", "Nueva contraseña en blanco");
-			return "error";
-		}
-		
-		//Repetir Contraseña en blanco
-		if(p[2].length() <= 17){
-			modelo.addAttribute("error", "Repetir nueva contraseña en blanco");
-			return "error";
-		}
-		
-		String pass = p[0].split("=")[1];
-		String newPass = p[1].split("=")[1];
-		String newPassAgain = p[2].split("=")[1];
-		
-		if(!newPass.equals(newPassAgain)){
-			modelo.addAttribute("error", "La nueva contraseña y su repetición no coinciden.");
-			return "error";
-		}
-		
-		
-		try{
-			updateInfo.UpdateCitizen(new ChangePassword(emailSession, pass, newPass));
-		}catch (Exception e){
-			modelo.addAttribute("error", "Ha ocurrido un error al cambiar la contraseña");
-			return "error";
-		}
-		
-		
-		return "user";
-		
 	}
 	
 }
