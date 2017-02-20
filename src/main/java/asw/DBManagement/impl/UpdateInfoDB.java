@@ -33,4 +33,16 @@ public class UpdateInfoDB implements UpdateInfo {
 		return citizen;
 	}
 
+	@Override
+	public Ciudadano UpdateCitizen(ChangePassword info) {
+
+		Ciudadano citizen = repositorio.findByEmail(info.getEmail());
+		if(citizen==null)return null;
+		if(!citizen.getPassword().equals(info.getPassword())) return null;
+		
+		citizen.setPassword(info.getNewPassword());
+		repositorio.save(citizen);
+		return citizen;
+	}
+
 }
