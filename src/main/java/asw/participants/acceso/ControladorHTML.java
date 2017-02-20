@@ -1,5 +1,7 @@
 package asw.participants.acceso;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -30,6 +32,8 @@ public class ControladorHTML {
 	private CiudadanoRepository repositorio;
 	@Autowired
 	private UpdateInfoDB updateInfo;
+	
+	private String emailSession;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String getHTML(Model modelo){
@@ -82,6 +86,7 @@ public class ControladorHTML {
 
 				
 				if(ciudadano != null){
+					emailSession = ciudadano.getEmail();
 					modelo.addAttribute("apellido", ciudadano.getApellidos());
 					modelo.addAttribute("nombre", ciudadano.getNombre());
 					modelo.addAttribute("edad", ciudadano.getFechaNacimiento());
@@ -96,6 +101,50 @@ public class ControladorHTML {
 			
 			}
 			return "error";
+	}
+	
+	@RequestMapping(value = "/changeInfo", method = RequestMethod.POST)
+	public String changeInfo(@RequestBody String parametros, Model modelo){
+		String[] p = parametros.split("&");
+		
+		//Contraseña
+		if(p[0].length() <= 9){
+			modelo.addAttribute("error", "Contraseña en blanco");
+			return "error";
+		}
+		
+		//Nueva Contraseña en blanco
+		if(p[1].length() <= 12){
+			modelo.addAttribute("error", "Nueva contraseña en blanco");
+			return "error";
+		}
+		
+		//Repetir Contraseña en blanco
+		if(p[2].length() <= 17){
+			modelo.addAttribute("error", "Repetir nueva contraseña en blanco");
+			return "error";
+		}
+		
+		String pass = p[0].split("=")[1];
+		String newPass = p[1].split("=")[1];
+		String newPassAgain = p[2].split("=")[1];
+		
+		if(!newPass.equals(newPassAgain)){
+			modelo.addAttribute("error", "La nueva contraseña y su repetición no coinciden.");
+			return "error";
+		}
+		
+		
+		try{
+			updateInfo.UpdateCitizen(new ChangePassword(emailSession, pass, newPass));
+		}catch (Exception e){
+			modelo.addAttribute("error", "Ha ocurrido un error al cambiar la contraseña");
+			return "error";
+		}
+		
+		
+		return "user";
+		
 	}
 	
 }
