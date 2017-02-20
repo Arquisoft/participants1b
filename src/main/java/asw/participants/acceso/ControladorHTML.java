@@ -1,21 +1,16 @@
 package asw.participants.acceso;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.time.Instant;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import asw.DBManagement.GetParticipant;
 import asw.DBManagement.impl.GetParticipantDB;
-import asw.DBManagement.impl.UpdateInfoDB;
 import asw.DBManagement.model.Ciudadano;
 import asw.DBManagement.persistence.CiudadanoRepository;
 import asw.participants.acceso.errores.HTTP404Exception;
@@ -28,8 +23,6 @@ public class ControladorHTML {
 	private GetParticipantDB getParticipantDB;
 	@Autowired
 	private CiudadanoRepository repositorio;
-	@Autowired
-	private UpdateInfoDB updateInfo;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String getHTML(Model modelo){
@@ -64,21 +57,13 @@ public class ControladorHTML {
 			{
 				if(!ciudadano.getEmail().equals(email))
 				{
-					//throw new HTTP404Exception();
-					return "error";
+					throw new HTTP404Exception();
 				}
 		
 				if(!ciudadano.getPassword().equals(password))
 				{
-					//throw new HTTP404Exception();
-					return "error";
+					throw new HTTP404Exception();
 				}
-				
-//				"firstName": Nombre,
-//				 "lastName": Apellidos,
-//				 "edad": Edad (se calculará a partir de la fecha de nacimiento)
-//				"ID": Número documento identificativo,
-//				 "email": email
 
 				
 				if(ciudadano != null){
