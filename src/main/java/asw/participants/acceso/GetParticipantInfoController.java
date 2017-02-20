@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,7 +22,7 @@ import asw.DBManagement.model.Ciudadano;
 import asw.participants.GetParticipantInfo;
 import asw.participants.acceso.errores.HTTP404Exception;
 
-@RestController
+@Controller
 public class GetParticipantInfoController implements GetParticipantInfo{
 	
 	@Autowired
@@ -32,15 +35,19 @@ public class GetParticipantInfoController implements GetParticipantInfo{
 		this.getParticipantDB = getParticipant;
 	}
 	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String getHTML(Model modelo){
+		return "login";
+	}
+	
 	@RequestMapping(
 			value = "/user",
-			method = RequestMethod.POST, produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE },
-			consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
-	public ResponseEntity<ParticipantsInfo> getInfoParticipant(@RequestBody ParticipantsLogin info){
+			method = RequestMethod.POST, headers = "content-type=application/x-www-form-urlencoded")
+	public ResponseEntity<ParticipantsInfo> getInfoParticipant(@ModelAttribute ParticipantsLogin info){
 		
 		if (info.getEmail() == null || info.getPassword() == null
 				|| info.getEmail().equals("") || info.getPassword().equals("")) {
-			throw new HTTP404Exception("No se han intriducido datos");
+			throw new HTTP404Exception("No se han introducido datos");
 		}
 		
         Pattern pattern = Pattern.compile("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]");
@@ -60,7 +67,7 @@ public class GetParticipantInfoController implements GetParticipantInfo{
 			throw new HTTP404Exception("Contraseña incorrecta");
 		}
 		
-		return new ResponseEntity<ParticipantsInfo>(new ParticipantsInfo(ci), HttpStatus.PERMANENT_REDIRECT);
+		return new ResponseEntity<ParticipantsInfo>(new ParticipantsInfo(ci), HttpStatus.OK);
 	}
 	
 	@ExceptionHandler(HTTP404Exception.class)

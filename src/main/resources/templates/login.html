@@ -5,13 +5,14 @@
 </head>
 <body>
 	<form action="user" method="post">
+	
 	<table>
         <tr>
              <td colspan="2" align="center">Login Participants</td>
         </tr>
         <tr>
             <td>Nombre de usuario:</td>
-            <td><input type="text" name="usuario"/></td>
+            <td><input type="text" name="email"/></td>
         </tr>
         <tr>
             <td>Password:</td>
@@ -24,5 +25,16 @@
         </tr>
     </table>
     </form>
+    
+    <script>
+  function checkAnswer(){
+      var response = document.getElementById('answer').value;
+      if (response == "correctanswer")
+          location = 'http://jsbin.com/ukifoh/1'; // 'right.html';
+      else
+          location = 'http://jsbin.com/ukifoh/2'; // 'wrong.html';
+      return false;
+  }
+  </script>
 </body>
 </html>

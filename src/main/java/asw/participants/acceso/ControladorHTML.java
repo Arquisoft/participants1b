@@ -20,7 +20,7 @@ import asw.DBManagement.model.Ciudadano;
 import asw.DBManagement.persistence.CiudadanoRepository;
 import asw.participants.acceso.errores.HTTP404Exception;
 
-@Controller
+//@Controller
 public class ControladorHTML {
 
 	@SuppressWarnings("unused")
@@ -36,9 +36,53 @@ public class ControladorHTML {
 		return "login";
 	}
 	
-//	@RequestMapping(value = "/logearse", method = RequestMethod.POST)
-//	public String postHTML(@RequestBody String parametros, Model modelo){
-//		
-//	}
+	@RequestMapping(value = "/user", method = RequestMethod.POST)
+	public String postHTML(@RequestBody String parametros, Model modelo){
+		
+		//parametros = email=nombre&password=contraseña
+		String[] p = parametros.split("&");
+		
+		//Usuario en blanco
+		if(p[0].length() <= 8){
+			throw new HTTP404Exception();
+		}
+		
+		//Contraseña en blanco
+		if(p[1].length() <= 9){
+			throw new HTTP404Exception();
+		}
+		
+		String email = p[0].split("=")[1];
+		email = email.replace("%40", "@");
+		String password = p[1].split("=")[1];
+		
+		//Comprobar los datos
+		
+		try{
+			Ciudadano ciudadano = repositorio.findByEmail(email);
+			if (ciudadano!= null)
+			{
+				if(!ciudadano.getEmail().equals(email))
+				{
+					//throw new HTTP404Exception();
+					return "error";
+				}
+		
+				if(!ciudadano.getPassword().equals(password))
+				{
+					//throw new HTTP404Exception();
+					return "error";
+				}
+				
+				System.out.println(ciudadano.toString());
+				return "datos";
+			}
+			
+			}catch(Exception e){
+				throw new HTTP404Exception();
+			
+			}
+			return "error";
+	}
 	
 }
