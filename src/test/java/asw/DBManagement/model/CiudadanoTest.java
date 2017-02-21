@@ -99,7 +99,7 @@ public class CiudadanoTest {
 
     @Test
     public void setFechaNacimiento() throws Exception {
-        Date newBornDate = null;
+        Date newBornDate;
         try {
             newBornDate = new SimpleDateFormat("yyyy-MM-dd").parse("1942-01-01");
             johnDoe.setFechaNacimiento(newBornDate);
