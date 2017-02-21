@@ -1,6 +1,7 @@
 package asw.participants.acceso;
 
 import asw.Application;
+import asw.DBManagement.model.Ciudadano;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.fail;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
@@ -22,6 +24,7 @@ public class ParticipantsInfoTest {
     private String firstName;
     private String lastName;
     private long edad;
+    private Date bornDate;
     private String nif;
     private String email;
 
@@ -31,7 +34,6 @@ public class ParticipantsInfoTest {
 
     @Before
     public void setUp() throws Exception {
-        Date bornDate = null;
         firstName = "John";
         lastName = "Doe";
         email = "john@doe.net";
@@ -44,6 +46,12 @@ public class ParticipantsInfoTest {
         }
 
         participantsInfo = new ParticipantsInfo(firstName, lastName, bornDate, nif, email);
+
+    }
+
+    @Test
+    public void testConstructor() throws  Exception {
+        assertThat(new ParticipantsInfo(new Ciudadano(firstName,lastName,email,bornDate,nif,"","","")));
     }
 
     @Test
@@ -77,6 +85,19 @@ public class ParticipantsInfoTest {
         assertThat(participantsInfo.equals(participantsInfo)).isTrue();
         assertThat(participantsInfo.equals(null)).isFalse();
         assertThat(participantsInfo.equals(email)).isFalse();
+        ParticipantsInfo participantsInfo2 = participantsInfo;
+        assertThat(participantsInfo.equals(participantsInfo2)).isTrue();
+    }
+
+    @Test
+    public void testToString() throws  Exception {
+        assertThat(participantsInfo.toString()).isEqualTo("ParticipantsInfo [firstName=" + firstName + ", lastName=" + lastName + ", edad=" + edad + ", nif=" + nif
+                + ", email=" + email + "]");
+    }
+
+    @Test
+    public void testHashCode() throws Exception{
+        assertThat(participantsInfo.hashCode()).isNotNull();
     }
 
 }
