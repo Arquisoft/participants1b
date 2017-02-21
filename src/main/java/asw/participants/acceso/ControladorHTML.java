@@ -94,7 +94,7 @@ public class ControladorHTML {
 			}
 	}
 	
-	private int edad(String fecha_nac) {     
+	protected int edad(String fecha_nac) {
 		   
 	    Date fechaActual = new Date();
 	    SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
