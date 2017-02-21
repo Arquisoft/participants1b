@@ -9,9 +9,9 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import asw.DBManagement.model.Ciudadano;
+import org.springframework.stereotype.Component;
 
 @XmlRootElement(name = "ParticipantInfo")
-
 public class ParticipantsInfo {
 
 	private String firstName;
@@ -22,7 +22,7 @@ public class ParticipantsInfo {
 	
 	public ParticipantsInfo(String firstName, String lastName, Date fechaNacimiento, String nif, String email) {
 		super();
-		LocalDate hoy = LocalDate.now();   
+		LocalDate hoy = LocalDate.now();
 		 LocalDate nacimiento = fechaNacimiento.toInstant().
 		           atZone(ZoneId.systemDefault()).toLocalDate(); 
 		this.firstName = firstName;
