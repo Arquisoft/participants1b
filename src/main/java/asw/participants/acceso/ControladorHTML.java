@@ -77,7 +77,6 @@ public class ControladorHTML {
 					modelo.addAttribute("apellido", ciudadano.getApellidos());
 					modelo.addAttribute("nombre", ciudadano.getNombre());
 					String f = ciudadano.getFechaNacimiento().toString().substring(0, 10);
-					System.out.println(edad(f));
 					modelo.addAttribute("edad", edad(f));
 					modelo.addAttribute("dni", ciudadano.getDni());
 					modelo.addAttribute("email", ciudadano.getEmail());
