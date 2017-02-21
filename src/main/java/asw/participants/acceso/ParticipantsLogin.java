@@ -10,9 +10,7 @@ public class ParticipantsLogin {
 	private String password;
 	private String email;
 	
-	public ParticipantsLogin() {
-	
-	}
+
 	public ParticipantsLogin(String email,String password) {
 		this.email = email;
 		this.password = password;
