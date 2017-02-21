@@ -27,4 +27,9 @@ public class ChangePasswordInfoTest {
         assertThat(changePasswordInfo.getMsg()).isEqualTo("prueba");
     }
 
+    @Test
+    public void testToString() throws Exception {
+        assertThat(changePasswordInfo.toString()).isEqualTo("ChangeInfo [ message: prueba]");
+    }
+
 }
