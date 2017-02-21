@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
@@ -48,6 +49,12 @@ public class ControladorHTMLTest {
     @Test
     public void postHTML() throws Exception {
         this.mock.perform(post("/user","email=pablo@gmail.es","password=111111")).andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void edad() {
+        //TODO This test is not correct :/
+        assertThat(controladorHTML.edad("1970-01-01")).isEqualTo(0);
     }
 
 }

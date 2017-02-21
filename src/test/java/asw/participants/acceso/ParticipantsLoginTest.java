@@ -36,4 +36,10 @@ public class ParticipantsLoginTest {
         assertThat(participantsLogin.getEmail()).isEqualTo(email);
     }
 
+    @Test
+
+    public void testToString() throws Exception  {
+        assertThat(participantsLogin.toString()).isEqualTo("ParticipantsLogin [password=" + password + ", email=" + email + "]");
+    }
+
 }
