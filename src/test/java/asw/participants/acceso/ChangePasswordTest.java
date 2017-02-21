@@ -1,7 +1,6 @@
 package asw.participants.acceso;
 
 import asw.Application;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -29,7 +28,7 @@ public class ChangePasswordTest {
         email = "email@email.net";
         password = "oldPassword";
         newPassword = "newPassword";
-        changePassword = new ChangePassword(email,password,newPassword);
+        changePassword = new ChangePassword(email, password, newPassword);
     }
 
     @After
@@ -38,7 +37,13 @@ public class ChangePasswordTest {
     }
 
     @Test
+    public void testConstructor() throws Exception {
+        assertThat(new ChangePassword()).isNotNull();
+    }
+
+    @Test
     public void getPassword() throws Exception {
+
         assertThat(changePassword.getPassword()).isEqualTo(password);
     }
 
@@ -50,5 +55,10 @@ public class ChangePasswordTest {
     @Test
     public void getNewPassword() throws Exception {
         assertThat(changePassword.getNewPassword()).isEqualTo(newPassword);
+    }
+
+    @Test
+    public void testToString() throws Exception {
+        assertThat(changePassword.toString()).isEqualTo("ChangeInfo [password=" + password + ", email=" + email + ", newPassword=" + newPassword + "]");
     }
 }
