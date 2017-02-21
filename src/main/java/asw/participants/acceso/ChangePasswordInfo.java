@@ -8,6 +8,7 @@ public class ChangePasswordInfo {
 	
 	private String msg;
 	
+	public ChangePasswordInfo(){}
 	public ChangePasswordInfo(String msg){
 		this.msg = msg;
 	}

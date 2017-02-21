@@ -32,6 +32,7 @@ public class ParticipantsInfo {
 		this.email = email;
 	}
 	
+	
 	public ParticipantsInfo(Ciudadano ciudadano)
 	{
 		LocalDate hoy = LocalDate.now();   
